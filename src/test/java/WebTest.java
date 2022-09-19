@@ -10,8 +10,7 @@ import org.openqa.selenium.WebDriver;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
-import static data.DataGenerator.generateDate;
-import static data.DataGenerator.generateName;
+import static data.DataGenerator.*;
 
 public class WebTest {
     WebDriver driver;
@@ -31,3 +30,25 @@ public class WebTest {
         var secondMeetingDate = DataGenerator.generateDate(7);
     }
 }
+
+   /* @Test
+    @DisplayName("Success test")
+    void testForm() {
+        $("[placeholder='Город']").setValue(generateCity("ru"));
+        $("[placeholder='Дата встречи']").setValue(generateDate(5));
+        $("[name='name']").setValue(generateName("ru"));
+        $("[name='phone']").setValue(generatePhone("ru"));
+        $("[role='presentation']").click();
+        $(".button__content").click();
+        $x("//*[contains(text(),'Необходимо подтверждение')]").should(Condition.visible, Duration.ofSeconds(2));
+        $(".notification__content")
+                .shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(2))
+                .shouldBe(Condition.visible);
+        $("//span[text()='Перепланировать']").click();
+        $x("//*[contains(text(),'Успешно!')]").should(Condition.visible, Duration.ofSeconds(2));
+        $(".notification__content")
+                .shouldHave(Condition.text("Встреча успешно запланирована на " + generateDate(5)), Duration.ofSeconds(2))
+                .shouldBe(Condition.visible);
+    }
+}
+*/

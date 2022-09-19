@@ -1,6 +1,7 @@
 package data;
 
 import com.github.javafaker.Faker;
+import lombok.Data;
 import lombok.Value;
 
 import java.time.LocalDate;
