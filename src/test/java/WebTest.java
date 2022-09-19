@@ -29,10 +29,8 @@ public class WebTest {
         var daysToAddForSecondMeeting = 7;
         var secondMeetingDate = DataGenerator.generateDate(7);
     }
-}
 
-   /* @Test
-    @DisplayName("Success test")
+    @Test
     void testForm() {
         $("[placeholder='Город']").setValue(generateCity("ru"));
         $("[placeholder='Дата встречи']").setValue(generateDate(5));
@@ -51,4 +49,4 @@ public class WebTest {
                 .shouldBe(Condition.visible);
     }
 }
-*/
+
