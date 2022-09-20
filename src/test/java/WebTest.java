@@ -33,7 +33,9 @@ public class WebTest {
     @Test
     void testForm() {
         $("[placeholder='Город']").setValue(generateCity("ru"));
-        $("[placeholder='Дата встречи']").setValue(generateDate(5));
+        String planningDate = generateDate(4);
+        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
+        $("[placeholder='Дата встречи']").setValue(planningDate);
         $("[name='name']").setValue(generateName("ru"));
         $("[name='phone']").setValue(generatePhone("ru"));
         $("[role='presentation']").click();
@@ -45,7 +47,7 @@ public class WebTest {
         $("//span[text()='Перепланировать']").click();
         $x("//*[contains(text(),'Успешно!')]").should(Condition.visible, Duration.ofSeconds(2));
         $(".notification__content")
-                .shouldHave(Condition.text("Встреча успешно запланирована на " + generateDate(5)), Duration.ofSeconds(2))
+                .shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate), Duration.ofSeconds(2))
                 .shouldBe(Condition.visible);
 
         //создать заполнить issue по тесту с неправильным выводом окна
