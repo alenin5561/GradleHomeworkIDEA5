@@ -49,11 +49,6 @@ public class WebTest {
         $(".notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate), Duration.ofSeconds(2))
                 .shouldBe(Condition.visible);
-
-        //создать заполнить issue по тесту с неправильным выводом окна
-        //issue на баг с валидацией имени
-        //issue на баг с валидацией города
-        
     }
 }
 
