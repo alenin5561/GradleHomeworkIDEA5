@@ -20,15 +20,6 @@ public class WebTest {
         open("http://localhost:9999");
     }
 
-    @Test
-    @DisplayName("Should successful plan and replan meeting")
-    void shouldSuccessfulPlanAndReplanMeeting() {
-        var validUser = DataGenerator.Registration.generateUser("ru");
-        var daysToAddForFirstMeeting = 4;
-        var firstMeetingDate = DataGenerator.generateDate(4);
-        var daysToAddForSecondMeeting = 7;
-        var secondMeetingDate = DataGenerator.generateDate(7);
-    }
 
     @Test
     void testForm() {
@@ -40,15 +31,21 @@ public class WebTest {
         $("[name='phone']").setValue(generatePhone("ru"));
         $("[role='presentation']").click();
         $(".button__content").click();
-        $x("//*[contains(text(),'Необходимо подтверждение')]").should(Condition.visible, Duration.ofSeconds(2));
-        $(".notification__content")
-                .shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(2))
-                .shouldBe(Condition.visible);
-        $("//span[text()='Перепланировать']").click();
         $x("//*[contains(text(),'Успешно!')]").should(Condition.visible, Duration.ofSeconds(2));
         $(".notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate), Duration.ofSeconds(2))
                 .shouldBe(Condition.visible);
+        String planningDate2 = generateDate(8);
+        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
+        $("[placeholder='Дата встречи']").setValue(planningDate2);
+        $(".button__content").click();
+        $x("//*[contains(text(),'Необходимо подтверждение')]").should(Condition.visible, Duration.ofSeconds(2));
+        $(".button__content").click();
+        $x("//*[contains(text(),'Успешно!')]").should(Condition.visible, Duration.ofSeconds(2));
+        $(".notification__content")
+                .shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate2), Duration.ofSeconds(2))
+                .shouldBe(Condition.visible);
+
     }
 }
 
