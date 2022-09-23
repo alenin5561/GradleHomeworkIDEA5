@@ -40,7 +40,7 @@ public class WebTest {
         $("[placeholder='Дата встречи']").setValue(planningDate2);
         $(".button__content").click();
         $x("//*[contains(text(),'Необходимо подтверждение')]").should(Condition.visible, Duration.ofSeconds(2));
-        $(".button__content").click();
+        $("[data-test-id='replan-notification'] .button__text").click();
         $x("//*[contains(text(),'Успешно!')]").should(Condition.visible, Duration.ofSeconds(2));
         $(".notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate2), Duration.ofSeconds(2))
